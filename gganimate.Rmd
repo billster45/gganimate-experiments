@@ -1,0 +1,25 @@
+---
+title: "gganimate"
+date: "17 December 2018"
+output: html_document
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+ 
+```{r cars}
+library(ggplot2)
+library(gganimate)
+ 
+p <- ggplot(airquality, aes(Day, Temp)) +
+  geom_line(size = 2, colour = 'steelblue') +
+  transition_states(Month, 4, 1) +
+  shadow_mark(size = 1, colour = 'grey')
+ 
+# When knitting you may get this error: Error in gzfile(file, "wb") : cannot open the connection
+# If you do, put the RStudio project in a folder that has a short file path such as your desktop as advised here
+# https://stackoverflow.com/questions/15363076/error-in-gzfilefile-wb-cannot-open-the-connection-or-compressed-file
+animate(p, renderer = magick_renderer())
+```
