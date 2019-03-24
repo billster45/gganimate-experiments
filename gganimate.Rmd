@@ -112,7 +112,6 @@ kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder da
 
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
-
 p <- 
   ggplot2::ggplot(data = gapminder::gapminder) + 
   ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
