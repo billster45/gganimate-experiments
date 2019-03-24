@@ -192,7 +192,6 @@ p <-
 p
 ```
 
-
 # transition_layers()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58

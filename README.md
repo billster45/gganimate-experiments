@@ -207,13 +207,19 @@ p <-
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/economics.png")
+ggplot2::ggsave(filename = "./images/economics.png", plot = p)
 ```
 
 ![](./images/economics.png) Animated ggnanimate plot
 
 ``` r
 p + gganimate::transition_reveal(date)
+print(p)
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
@@ -323,7 +329,7 @@ p <-
   ggplot2::geom_point() +
   ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/datasauRus.png")
+ggplot2::ggsave(filename = "./images/datasauRus.png", plot = p)
 ```
 
 ![](./images/datasauRus.png) Animated gganimate plot
@@ -337,6 +343,7 @@ p <-
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
+print(p)
 gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
 
@@ -513,7 +520,7 @@ p <-
   ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
   ggplot2::facet_wrap(~year) +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/gapminder.png")
+ggplot2::ggsave(filename = "./images/gapminder.png", plot = p)
 ```
 
 ![](./images/gapminder.png) Animated gganimate plot
@@ -532,6 +539,7 @@ p <-
   ggplot2::labs(title = "Year: {frame_time}") +
   gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE) +
   ggplot2::theme_minimal()
+print(p)
 gganimate::anim_save(filename = "./images/gapminder.gif")
 ```
 
@@ -683,7 +691,7 @@ p <-
   ggplot2::geom_point(size = 2) +
   ggplot2::facet_wrap(~Species) +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/iris.png")
+ggplot2::ggsave(filename = "./images/iris.png", plot = p)
 ```
 
 ![](./images/iris.png)
@@ -700,6 +708,7 @@ p <-
   ggplot2::labs(title = "{closest_state}") +
   gganimate::shadow_wake(wake_length = 0.1) +
   ggplot2::theme_minimal()
+print(p)
 gganimate::anim_save(filename = "./images/iris.gif")
 ```
 
@@ -872,7 +881,7 @@ p <-
   ggplot2::geom_line(color = 'steelblue', size = 1) +
   ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/airquality.png")
+ggplot2::ggsave(filename = "./images/airquality.png", plot = p)
 ```
 
 ![](./images/airquality.png)
@@ -889,6 +898,7 @@ p <-
   ggplot2::labs(title = "Month: {frame_time}") +
   gganimate::shadow_mark(colour = 'grey', size = 0.75) +
   ggplot2::theme_minimal()
+print(p)
 gganimate::anim_save(filename = "./images/airquality.gif")
 ```
 
@@ -1187,7 +1197,7 @@ p <-
   ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
   ggplot2::geom_smooth(aes(colour = factor(gear))) +
   ggplot2::theme_minimal()
-ggplot2::ggsave(filename = "./images/mtcars.png")
+ggplot2::ggsave(filename = "./images/mtcars.png", plot = p)
 ```
 
 ![](./images/mtcars.png)
@@ -1206,6 +1216,7 @@ p <-
   gganimate::enter_fade() + 
   gganimate::exit_fade() +
   ggplot2::theme_minimal()
+print(p)
 gganimate::anim_save(filename = "./images/mtcars.gif")
 ```
 
