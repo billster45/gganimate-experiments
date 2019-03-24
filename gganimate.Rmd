@@ -7,63 +7,83 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
  
-When running this code in chunks inside RStudio you may get an error like this: "Error in gzfile(file, "wb") : cannot open the connection.""
-If you do, put the RStudio project in a folder that has a short file path such as your desktop as advised here https://stackoverflow.com/questions/15363076/error-in-gzfilefile-wb-cannot-open-the-connection-or-compressed-file
-Even if the error remains it should still knit and createt an html file you can share.
+# Introduction
 
+This set of examples comes from the excellent slides tweeted about here: https://twitter.com/mitchoharawild/status/1108913366100119553?s=12 
+The tweet links to these great slides: https://mitchelloharawild.com/wombat-gganimate/#1 that you can find the code for on GitHub here: https://github.com/numbats/gganimate-workshop
+
+To help understand more intuitively how gganimate works, most of the examples from the slides are presented below as static ggplot charts along with a few rows of the raw data. Then as the animated version using gganimate.
  
-```{r}
+I've also made it clear which package each function comes from, either ggplot2 or gganimate.
+
+Finally, I often have trouble getting agganimate to work. Through trial and errror I've found that I need the following four packages: ggplot2, gganmimate, transformr, magick. Then to run the plot with this line of code..
+
+gganimate::animate(p, renderer = magick_renderer())
+ 
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(gganimate)
 library(transformr) # devtools::install_github("thomasp85/transformr")
 library(magick)
 library(datasauRus)
 library(gapminder)
+library(kableExtra)
+
+kable_table <- function(table, title) {
+  kableExtra::kable(table, caption = title) %>%
+    kable_styling(latex_options = "hold_position", full_width = F, bootstrap_options = c("striped", "condensed"), position = "left")
+}
 ```
-# gganimate::transition_reveal
+
+# transition_reveal()
 
 Adapting this example: https://mitchelloharawild.com/wombat-gganimate/#37
 
 Static ggplot plot
-```{r}
-head(economics)
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(economics) +
+  ggplot2::ggplot(ggplot2::economics) +
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
 p
+
+kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
 ```
 Animated ggnanimate plot
-```{r}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p +
-  gganimate::transition_reveal(along = date)
+  gganimate::transition_reveal(date)
 
-gganimate::animate(p, renderer = magick_renderer())
+gganimate::anim_save(filename = "./images/along.gif")
 ```
-# gganimate::transition_states
+![](./images/along.gif)
+
+# transition_states()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#42
 
 Static ggplot chart
-```{r}
-head(datasaurus_dozen)
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+
 p <- 
-  ggplot2::ggplot(data = datasaurus_dozen) +
+  ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
   ggplot2::geom_point() +
-  facet_wrap(~dataset)  +
+  ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
 p
+
+kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in plot above")
 ```
 
 Animated gganimate plot
-```{r}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(data = datasaurus_dozen) +
+  ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
   ggplot2::geom_point() +
-  # facet_wrap(~dataset)
+  # ggplot2::facet_wrap(~dataset)
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
@@ -71,32 +91,39 @@ p <-
 gganimate::animate(p, renderer = magick_renderer())
 ```
 
-# gganimate::transition_time and gganimate::shadow_wake
+# transition_time() & shadow_wake()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#74
 
 Static ggplot plot
-```{r}
-theme_set(theme_bw())
-
-head(gapminder)
-
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(data = gapminder) + 
+  ggplot2::ggplot(data = gapminder::gapminder) + 
   ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
   ggplot2::geom_point(show.legend = FALSE) +
   ggplot2::scale_x_log10() +
   ggplot2::scale_color_viridis_d() +
   ggplot2::scale_size(range = c(2, 12)) +
   ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
+  ggplot2::facet_wrap(~year)
   ggplot2::theme_minimal()
-
 p
+
+kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in plot above")
 ```
 
 Animated gganimate plot
-```{r}
-p +
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+
+p <- 
+  ggplot2::ggplot(data = gapminder::gapminder) + 
+  ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
+  ggplot2::geom_point(show.legend = FALSE) +
+  ggplot2::scale_x_log10() +
+  ggplot2::scale_color_viridis_d() +
+  ggplot2::scale_size(range = c(2, 12)) +
+  ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
+  # ggplot2::facet_wrap(~year)
   gganimate::transition_time(time = year) +
   ggplot2::labs(title = "Year: {frame_time}") +
   gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE) +
@@ -105,29 +132,29 @@ p +
 gganimate::animate(p, renderer = magick_renderer())
 ```
 
-# gganimate::transition_states and gganimate::shadow_wake
+# transition_states() & shadow_wake()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#57
 
 Static ggplot plot
-```{r}
-head(iris)
-
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(iris, aes(Petal.Length, Sepal.Length)) +
+  ggplot2::ggplot(data = datasets::iris) +
+  ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
   ggplot2::geom_point(size = 2) +
-  facet_wrap(~Species) +
+  ggplot2::facet_wrap(~Species) +
   ggplot2::theme_minimal()
-
 p
+
+kable_table(head(datasets::iris), "Top few rows of datasets::iris data in plot above")
 ```
 Animated gganimate plot
-```{r}
- 
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(iris, aes(Petal.Length, Sepal.Length)) +
+  ggplot2::ggplot(data = datasets::iris) +
+  ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
   ggplot2::geom_point(size = 2) +
-  # facet_wrap(~Species)
+  # ggplot2::facet_wrap(~Species)
   gganimate::transition_states(states = Species, transition_length = 4, state_length = 1) +
   ggplot2::labs(title = "{closest_state}") +
   gganimate::shadow_wake(wake_length = 0.1) +
@@ -136,29 +163,29 @@ p <-
 gganimate::animate(p, renderer = magick_renderer())
 ```
 
-# gganimate::transition_time and gganimate::shadow_mark
+# transition_time() & shadow_mark()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
 
 Static ggplot plot
-```{r}
-head(airquality)
-
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(airquality, aes(Day, Temp)) +
+  ggplot2::ggplot(data = datasets::airquality) +
+  ggplot2::aes(Day, Temp) +
   ggplot2::geom_line(color = 'steelblue', size = 1) +
-  facet_wrap(~Month) +
+  ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
-
 p
+
+kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in plot above")
 ```
 
 Animated gganimate plot
-```{r}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
 p <- 
-  ggplot2::ggplot(airquality, aes(Day, Temp)) +
+  ggplot2::ggplot(data = datasets::airquality, aes(Day, Temp)) +
   ggplot2::geom_line(color = 'red', size = 1) +
-  # facet_wrap(~Month)
+  # ggplot2::facet_wrap(~Month)
   gganimate::transition_time(time = Month) +
   gganimate::shadow_mark(colour = 'black', size = 0.75) +
   ggplot2::theme_minimal()
