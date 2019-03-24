@@ -9,10 +9,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
  
  
-```{r cars}
+```{r}
 library(ggplot2)
 library(gganimate)
 library(transformr)
+library(magick)
  
 p <- ggplot(airquality, aes(Day, Temp)) +
   geom_line(size = 2, colour = 'steelblue') +
@@ -25,3 +26,46 @@ p <- ggplot(airquality, aes(Day, Temp)) +
 # You also need to install this https://github.com/thomasp85/transformr as described here...https://github.com/thomasp85/gganimate/issues/190
 animate(p, renderer = magick_renderer())
 ```
+
+Adapting this example: https://mitchelloharawild.com/wombat-gganimate/#37
+
+```{r}
+p <- ggplot(economics) +
+  aes(date, unemploy) +
+  geom_line() +
+  transition_reveal(date)
+
+gganimate::animate(p, renderer = magick_renderer())
+```
+
+This example: https://mitchelloharawild.com/wombat-gganimate/#42
+
+```{r}
+library(datasauRus)
+
+p <- ggplot(datasaurus_dozen) +
+  aes(x, y) +
+  geom_point() +
+  transition_states(dataset, 3, 1) +
+  labs(title = "Dataset: {closest_state}")
+
+gganimate::animate(p, renderer = magick_renderer())
+```
+```{r}
+library(gapminder)
+theme_set(theme_bw())
+
+p <- ggplot(gapminder) + 
+  aes(x = gdpPercap, y=lifeExp, 
+      size = pop, colour = country) +
+  geom_point(show.legend = FALSE) +
+  scale_x_log10() +
+  scale_color_viridis_d() +
+  scale_size(range = c(2, 12)) +
+  labs(x = "GDP per capita", y = "Life expectancy") +
+  transition_time(year) +
+  labs(title = "Year: {frame_time}")
+
+gganimate::animate(p, renderer = magick_renderer())
+```
+
