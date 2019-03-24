@@ -21,6 +21,8 @@ To help understand more intuitively how gganimate works, most of the examples fr
 
 I've also made it clear which package each function comes from, either ggplot2 or gganimate by adding ggnaimte:: or ggplot2:: before each function.
 
+This describes the functions of gganimate and what they do well: <https://gganimate.com/reference/index.html>
+
 ``` r
 library(ggplot2)
 library(gganimate)
@@ -215,11 +217,7 @@ Animated ggnanimate plot
 ``` r
 p +
   gganimate::transition_reveal(date)
-```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.gif)
-
-``` r
 gganimate::anim_save(filename = "./images/along.gif")
 ```
 

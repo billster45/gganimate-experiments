@@ -63,7 +63,7 @@ kable_table(head(economics), "Top few rows of ggplot2::economics data in plot ab
 ```
 
 Animated ggnanimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p +
   gganimate::transition_reveal(date)
 

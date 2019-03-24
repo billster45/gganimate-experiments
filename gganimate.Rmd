@@ -192,3 +192,39 @@ p <-
 p
 ```
 
+
+# transition_layers()
+
+This example: https://mitchelloharawild.com/wombat-gganimate/#58
+
+Static ggplot plot
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  ggplot2::theme_minimal()
+p
+
+kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
+```
+
+Animated gganimate plot
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  gganimate::transition_layers(layer_length = 1, transition_length = 2,
+                    from_blank = FALSE, keep_layers = c(Inf, 0, 0)) +
+  gganimate::enter_fade() + 
+  gganimate::exit_fade() +
+  ggplot2::theme_minimal()
+p
+```
+
+
