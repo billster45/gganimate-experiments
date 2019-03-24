@@ -65,7 +65,6 @@ This example: https://mitchelloharawild.com/wombat-gganimate/#42
 
 Static ggplot chart
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
-
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
@@ -88,8 +87,6 @@ p <-
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
 p
-  
-# gganimate::animate(p, renderer = magick_renderer())
 ```
 
 # transition_time() & shadow_wake()
@@ -188,7 +185,7 @@ p <-
   ggplot2::geom_line(color = 'steelblue', size = 1) +
   # ggplot2::facet_wrap(~Month)
   gganimate::transition_time(time = Month) +
-  # ggplot2::labs(title = "{closest_time}") +
+  ggplot2::labs(title = "Month: {frame_time}") +
   gganimate::shadow_mark(colour = 'grey', size = 0.75) +
   ggplot2::theme_minimal()
 p
