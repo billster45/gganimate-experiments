@@ -7,6 +7,7 @@ Understanding gganimate intuitively
 -   [transition\_time() & shadow\_wake()](#transition_time-shadow_wake)
 -   [transition\_states() & shadow\_wake()](#transition_states-shadow_wake)
 -   [transition\_time() & shadow\_mark()](#transition_time-shadow_mark)
+-   [transition\_layers()](#transition_layers)
 
 Introduction
 ============
@@ -45,27 +46,13 @@ transition\_reveal()
 
 Adapting this example: <https://mitchelloharawild.com/wombat-gganimate/#37>
 
-Static ggplot plot
-
 ``` r
-p <- 
-  ggplot2::ggplot(ggplot2::economics) +
-  ggplot2::aes(date, unemploy) +
-  ggplot2::geom_line() +
-  ggplot2::theme_minimal()
-
-ggplot2::ggsave(filename = "./images/economics.png")
-```
-
-![](./images/economics.png)
-
-``` r
-kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
+kable_table(head(economics), "Top few rows of ggplot2::economics data in plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of ggplot2::economics data in plot above
+Top few rows of ggplot2::economics data in plots below
 </caption>
 <thead>
 <tr>
@@ -212,43 +199,38 @@ unemploy
 </tr>
 </tbody>
 </table>
-Animated ggnanimate plot
+Static ggplot plot
 
 ``` r
-p +
-  gganimate::transition_reveal(date)
-
-gganimate::anim_save(filename = "./images/along.gif")
+p <- 
+  ggplot2::ggplot(ggplot2::economics) +
+  ggplot2::aes(date, unemploy) +
+  ggplot2::geom_line() +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/economics.png")
 ```
 
-![](./images/along.gif)
+![](./images/economics.png) Animated ggnanimate plot
+
+``` r
+p + gganimate::transition_reveal(date)
+gganimate::anim_save(filename = "./images/economics.gif")
+```
+
+![](./images/economics.gif)
 
 transition\_states()
 ====================
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#42>
 
-Static ggplot chart
-
 ``` r
-p <- 
-  ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
-  ggplot2::aes(x, y) +
-  ggplot2::geom_point() +
-  ggplot2::facet_wrap(~dataset)  +
-  ggplot2::theme_minimal()
-p
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
-
-``` r
-kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in plot above")
+kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in  2 plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of datasauRus::datasaurus\_dozen data in plot above
+Top few rows of datasauRus::datasaurus\_dozen data in 2 plots below
 </caption>
 <thead>
 <tr>
@@ -332,7 +314,19 @@ dino
 </tr>
 </tbody>
 </table>
-Animated gganimate plot
+Static ggplot chart
+
+``` r
+p <- 
+  ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
+  ggplot2::aes(x, y) +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(~dataset)  +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/datasauRus.png")
+```
+
+![](./images/datasauRus.png) Animated gganimate plot
 
 ``` r
 p <- 
@@ -343,41 +337,23 @@ p <-
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.gif)
+![](./images/datasauRus.gif)
 
 transition\_time() & shadow\_wake()
 ===================================
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#74>
 
-Static ggplot plot
-
 ``` r
-p <- 
-  ggplot2::ggplot(data = gapminder::gapminder) + 
-  ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
-  ggplot2::geom_point(show.legend = FALSE) +
-  ggplot2::scale_x_log10() +
-  ggplot2::scale_color_viridis_d() +
-  ggplot2::scale_size(range = c(2, 12)) +
-  ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
-  ggplot2::facet_wrap(~year) +
-  ggplot2::theme_minimal()
-p
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
-
-``` r
-kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in plot above")
+kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in 2 plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of gapminder::gapminder data in plot above
+Top few rows of gapminder::gapminder data in 2 plots below
 </caption>
 <thead>
 <tr>
@@ -524,7 +500,23 @@ Asia
 </tr>
 </tbody>
 </table>
-Animated gganimate plot
+Static ggplot plot
+
+``` r
+p <- 
+  ggplot2::ggplot(data = gapminder::gapminder) + 
+  ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
+  ggplot2::geom_point(show.legend = FALSE) +
+  ggplot2::scale_x_log10() +
+  ggplot2::scale_color_viridis_d() +
+  ggplot2::scale_size(range = c(2, 12)) +
+  ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
+  ggplot2::facet_wrap(~year) +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/gapminder.png")
+```
+
+![](./images/gapminder.png) Animated gganimate plot
 
 ``` r
 p <- 
@@ -540,37 +532,23 @@ p <-
   ggplot2::labs(title = "Year: {frame_time}") +
   gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/gapminder.gif")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.gif)
+![](./images/gapminder.gif)
 
 transition\_states() & shadow\_wake()
 =====================================
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#57>
 
-Static ggplot plot
-
 ``` r
-p <- 
-  ggplot2::ggplot(data = datasets::iris) +
-  ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
-  ggplot2::geom_point(size = 2) +
-  ggplot2::facet_wrap(~Species) +
-  ggplot2::theme_minimal()
-p
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
-
-``` r
-kable_table(head(datasets::iris), "Top few rows of datasets::iris data in plot above")
+kable_table(head(datasets::iris), "Top few rows of datasets::iris data in 2 plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of datasets::iris data in plot above
+Top few rows of datasets::iris data in 2 plots below
 </caption>
 <thead>
 <tr>
@@ -696,6 +674,20 @@ setosa
 </tr>
 </tbody>
 </table>
+Static ggplot plot
+
+``` r
+p <- 
+  ggplot2::ggplot(data = datasets::iris) +
+  ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
+  ggplot2::geom_point(size = 2) +
+  ggplot2::facet_wrap(~Species) +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/iris.png")
+```
+
+![](./images/iris.png)
+
 Animated gganimate plot
 
 ``` r
@@ -708,37 +700,23 @@ p <-
   ggplot2::labs(title = "{closest_state}") +
   gganimate::shadow_wake(wake_length = 0.1) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/iris.gif")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-10-1.gif)
+![](./images/iris.gif)
 
 transition\_time() & shadow\_mark()
 ===================================
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#58>
 
-Static ggplot plot
-
 ``` r
-p <- 
-  ggplot2::ggplot(data = datasets::airquality) +
-  ggplot2::aes(x = Day, y = Temp) +
-  ggplot2::geom_line(color = 'steelblue', size = 1) +
-  ggplot2::facet_wrap(~Month) +
-  ggplot2::theme_minimal()
-p
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
-
-``` r
-kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in plot above")
+kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in 2 plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of datasets::airquality data in plot above
+Top few rows of datasets::airquality data in 2 plots below
 </caption>
 <thead>
 <tr>
@@ -885,6 +863,20 @@ NA
 </tr>
 </tbody>
 </table>
+Static ggplot plot
+
+``` r
+p <- 
+  ggplot2::ggplot(data = datasets::airquality) +
+  ggplot2::aes(x = Day, y = Temp) +
+  ggplot2::geom_line(color = 'steelblue', size = 1) +
+  ggplot2::facet_wrap(~Month) +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/airquality.png")
+```
+
+![](./images/airquality.png)
+
 Animated gganimate plot
 
 ``` r
@@ -897,7 +889,324 @@ p <-
   ggplot2::labs(title = "Month: {frame_time}") +
   gganimate::shadow_mark(colour = 'grey', size = 0.75) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/airquality.gif")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-12-1.gif)
+![](./images/airquality.gif)
+
+transition\_layers()
+====================
+
+This example: <https://mitchelloharawild.com/wombat-gganimate/#58>
+
+``` r
+kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
+```
+
+<table class="table table-striped table-condensed" style="width: auto !important; ">
+<caption>
+Top few rows of datasets::mtcars data in plot above
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+<th style="text-align:right;">
+wt
+</th>
+<th style="text-align:right;">
+qsec
+</th>
+<th style="text-align:right;">
+vs
+</th>
+<th style="text-align:right;">
+am
+</th>
+<th style="text-align:right;">
+gear
+</th>
+<th style="text-align:right;">
+carb
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.620
+</td>
+<td style="text-align:right;">
+16.46
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+<td style="text-align:right;">
+2.875
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+<td style="text-align:right;">
+2.320
+</td>
+<td style="text-align:right;">
+18.61
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+<td style="text-align:right;">
+3.215
+</td>
+<td style="text-align:right;">
+19.44
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+3.440
+</td>
+<td style="text-align:right;">
+17.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valiant
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+225
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+2.76
+</td>
+<td style="text-align:right;">
+3.460
+</td>
+<td style="text-align:right;">
+20.22
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+Static ggplot plot
+
+``` r
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/mtcars.png")
+```
+
+![](./images/mtcars.png)
+
+Animated gganimate plot
+
+``` r
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  gganimate::transition_layers(layer_length = 1, transition_length = 2,
+                    from_blank = FALSE, keep_layers = c(Inf, 0, 0)) +
+  gganimate::enter_fade() + 
+  gganimate::exit_fade() +
+  ggplot2::theme_minimal()
+gganimate::anim_save(filename = "./images/mtcars.gif")
+```
+
+![](./images/mtcars.gif)

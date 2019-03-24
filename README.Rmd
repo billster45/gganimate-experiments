@@ -46,6 +46,10 @@ kable_table <- function(table, title) {
 
 Adapting this example: https://mitchelloharawild.com/wombat-gganimate/#37
 
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(economics), "Top few rows of ggplot2::economics data in plots below")
+```
+
 Static ggplot plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
@@ -53,27 +57,23 @@ p <-
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
-
 ggplot2::ggsave(filename = "./images/economics.png")
 ```
 ![](./images/economics.png)
-
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
-kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
-```
-
 Animated ggnanimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
-p +
-  gganimate::transition_reveal(date)
-
-gganimate::anim_save(filename = "./images/along.gif")
+p + gganimate::transition_reveal(date)
+gganimate::anim_save(filename = "./images/economics.gif")
 ```
-![](./images/along.gif)
+![](./images/economics.gif)
 
 # transition_states()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#42
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in  2 plots below")
+```
 
 Static ggplot chart
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -83,13 +83,11 @@ p <-
   ggplot2::geom_point() +
   ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
-p
-
-kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in plot above")
+ggplot2::ggsave(filename = "./images/datasauRus.png")
 ```
-
+![](./images/datasauRus.png)
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
@@ -98,12 +96,17 @@ p <-
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
+![](./images/datasauRus.gif)
 
 # transition_time() & shadow_wake()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#74
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in 2 plots below")
+```
 
 Static ggplot plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -117,14 +120,11 @@ p <-
   ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
   ggplot2::facet_wrap(~year) +
   ggplot2::theme_minimal()
-p
-
-kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in plot above")
+ggplot2::ggsave(filename = "./images/gapminder.png")
 ```
-
+![](./images/gapminder.png)
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
-
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 
   ggplot2::ggplot(data = gapminder::gapminder) + 
   ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
@@ -138,12 +138,17 @@ p <-
   ggplot2::labs(title = "Year: {frame_time}") +
   gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/gapminder.gif")
 ```
+![](./images/gapminder.gif)
 
 # transition_states() & shadow_wake()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#57
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(datasets::iris), "Top few rows of datasets::iris data in 2 plots below")
+```
 
 Static ggplot plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -153,12 +158,12 @@ p <-
   ggplot2::geom_point(size = 2) +
   ggplot2::facet_wrap(~Species) +
   ggplot2::theme_minimal()
-p
-
-kable_table(head(datasets::iris), "Top few rows of datasets::iris data in plot above")
+ggplot2::ggsave(filename = "./images/iris.png")
 ```
+![](./images/iris.png)
+
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 
   ggplot2::ggplot(data = datasets::iris) +
   ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
@@ -168,13 +173,17 @@ p <-
   ggplot2::labs(title = "{closest_state}") +
   gganimate::shadow_wake(wake_length = 0.1) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/iris.gif")
 ```
-
+![](./images/iris.gif)
 
 # transition_time() & shadow_mark()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in 2 plots below")
+```
 
 Static ggplot plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -184,13 +193,12 @@ p <-
   ggplot2::geom_line(color = 'steelblue', size = 1) +
   ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
-p
-
-kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in plot above")
+ggplot2::ggsave(filename = "./images/airquality.png")
 ```
+![](./images/airquality.png)
 
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 
   ggplot2::ggplot(data = datasets::airquality) +
   ggplot2::aes(x = Day, y = Temp) +
@@ -200,6 +208,46 @@ p <-
   ggplot2::labs(title = "Month: {frame_time}") +
   gganimate::shadow_mark(colour = 'grey', size = 0.75) +
   ggplot2::theme_minimal()
-p
+gganimate::anim_save(filename = "./images/airquality.gif")
 ```
+![](./images/airquality.gif)
+
+# transition_layers()
+
+This example: https://mitchelloharawild.com/wombat-gganimate/#58
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
+```
+
+Static ggplot plot
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  ggplot2::theme_minimal()
+ggplot2::ggsave(filename = "./images/mtcars.png")
+```
+![](./images/mtcars.png)
+
+Animated gganimate plot
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
+p <- 
+  ggplot2::ggplot(data = datasets::mtcars) +
+  ggplot2::aes(mpg, disp) + 
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
+  ggplot2::geom_smooth(aes(colour = factor(gear))) +
+  gganimate::transition_layers(layer_length = 1, transition_length = 2,
+                    from_blank = FALSE, keep_layers = c(Inf, 0, 0)) +
+  gganimate::enter_fade() + 
+  gganimate::exit_fade() +
+  ggplot2::theme_minimal()
+gganimate::anim_save(filename = "./images/mtcars.gif")
+```
+![](./images/mtcars.gif)
+
 
