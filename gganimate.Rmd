@@ -19,6 +19,8 @@ To help understand more intuitively how gganimate works, most of the examples fr
  
 I've also made it clear which package each function comes from, either ggplot2 or gganimate by adding ggnaimte:: or ggplot2:: before each function.
 
+This describes the functions of gganimate and what they do well: https://gganimate.com/reference/index.html
+
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(gganimate)

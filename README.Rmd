@@ -23,6 +23,8 @@ To help understand more intuitively how gganimate works, most of the examples fr
  
 I've also made it clear which package each function comes from, either ggplot2 or gganimate by adding ggnaimte:: or ggplot2:: before each function.
 
+This describes the functions of gganimate and what they do well: https://gganimate.com/reference/index.html
+
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(gganimate)
@@ -51,12 +53,14 @@ p <-
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
-p
-ggplot2::ggsave(filename = "./images/economics.png")
 
-kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
+ggplot2::ggsave(filename = "./images/economics.png")
 ```
 ![](./images/economics.png)
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
+```
 
 Animated ggnanimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}

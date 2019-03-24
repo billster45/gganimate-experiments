@@ -51,14 +51,13 @@ p <-
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
-p
+
+ggplot2::ggsave(filename = "./images/economics.png")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](./images/economics.png)
 
 ``` r
-ggplot2::ggsave(filename = "./images/economics.png")
-
 kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
 ```
 
@@ -211,8 +210,6 @@ unemploy
 </tr>
 </tbody>
 </table>
-![](./images/economics.png)
-
 Animated ggnanimate plot
 
 ``` r
@@ -220,7 +217,7 @@ p +
   gganimate::transition_reveal(date)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.gif)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.gif)
 
 ``` r
 gganimate::anim_save(filename = "./images/along.gif")
@@ -245,7 +242,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in plot above")
@@ -351,7 +348,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-5-1.gif)
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.gif)
 
 transition\_time() & shadow\_wake()
 ===================================
@@ -374,7 +371,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ``` r
 kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in plot above")
@@ -548,7 +545,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.gif)
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.gif)
 
 transition\_states() & shadow\_wake()
 =====================================
@@ -567,7 +564,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ``` r
 kable_table(head(datasets::iris), "Top few rows of datasets::iris data in plot above")
@@ -716,7 +713,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.gif)
+![](README_files/figure-markdown_github/unnamed-chunk-10-1.gif)
 
 transition\_time() & shadow\_mark()
 ===================================
@@ -735,7 +732,7 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
 ``` r
 kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in plot above")
@@ -905,4 +902,4 @@ p <-
 p
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-11-1.gif)
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.gif)
