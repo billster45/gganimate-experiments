@@ -15,10 +15,11 @@ library(gganimate)
 library(transformr)
 library(magick)
  
-p <- ggplot(airquality, aes(Day, Temp)) +
-  geom_line(size = 2, colour = 'steelblue') +
-  transition_states(Month, 4, 1) +
-  shadow_mark(size = 1, colour = 'grey')
+p <- 
+  ggplot2::ggplot(airquality, aes(Day, Temp)) +
+  ggplot2::geom_line(size = 2, colour = 'steelblue') +
+  gganimate::transition_states(Month, 4, 1) +
+  gganimate::shadow_mark(size = 1, colour = 'grey')
  
 # When knitting you may get this error: Error in gzfile(file, "wb") : cannot open the connection
 # If you do, put the RStudio project in a folder that has a short file path such as your desktop as advised here
@@ -30,10 +31,11 @@ animate(p, renderer = magick_renderer())
 Adapting this example: https://mitchelloharawild.com/wombat-gganimate/#37
 
 ```{r}
-p <- ggplot(economics) +
-  aes(date, unemploy) +
-  geom_line() +
-  transition_reveal(date)
+p <- 
+  ggplot2::ggplot(economics) +
+  ggplot2::aes(date, unemploy) +
+  ggplot2::geom_line() +
+  gganimate::transition_reveal(date)
 
 gganimate::animate(p, renderer = magick_renderer())
 ```
@@ -43,28 +45,54 @@ This example: https://mitchelloharawild.com/wombat-gganimate/#42
 ```{r}
 library(datasauRus)
 
-p <- ggplot(datasaurus_dozen) +
-  aes(x, y) +
+p <- 
+  ggplot2::ggplot(datasaurus_dozen) +
+  ggplot2::aes(x, y) +
   geom_point() +
-  transition_states(dataset, 3, 1) +
-  labs(title = "Dataset: {closest_state}")
+  gganimate::transition_states(dataset, 3, 1) +
+  ggplot2::labs(title = "Dataset: {closest_state}")
 
 gganimate::animate(p, renderer = magick_renderer())
 ```
+
+This example: https://mitchelloharawild.com/wombat-gganimate/#74
+
 ```{r}
 library(gapminder)
 theme_set(theme_bw())
 
-p <- ggplot(gapminder) + 
-  aes(x = gdpPercap, y=lifeExp, 
-      size = pop, colour = country) +
-  geom_point(show.legend = FALSE) +
-  scale_x_log10() +
-  scale_color_viridis_d() +
-  scale_size(range = c(2, 12)) +
-  labs(x = "GDP per capita", y = "Life expectancy") +
-  transition_time(year) +
-  labs(title = "Year: {frame_time}")
+p <- 
+  ggplot2::ggplot(gapminder) + 
+  ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
+  ggplot2::geom_point(show.legend = FALSE) +
+  ggplot2::scale_x_log10() +
+  ggplot2::scale_color_viridis_d() +
+  ggplot2::scale_size(range = c(2, 12)) +
+  ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
+  gganimate::transition_time(year) +
+  ggplot2::labs(title = "Year: {frame_time}") +
+  gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE)
+
+gganimate::animate(p, renderer = magick_renderer())
+```
+
+
+```{r}
+p <- 
+  ggplot2::ggplot(iris, aes(Petal.Length, Sepal.Length)) +
+  ggplot2::geom_point(size = 2) +
+  ggplot2::labs(title = "{closest_state}") +
+  gganimate::transition_states(Species, transition_length = 4, state_length = 1) +
+  gganimate::shadow_wake(wake_length = 0.1)
+
+gganimate::animate(p, renderer = magick_renderer())
+```
+```{r}
+p <- 
+  ggplot2::ggplot(airquality, aes(Day, Temp)) +
+  ggplot2::geom_line(color = 'red', size = 1) +
+  gganimate::transition_time(Month) +
+  gganimate::shadow_mark(colour = 'black', size = 0.75)
 
 gganimate::animate(p, renderer = magick_renderer())
 ```
