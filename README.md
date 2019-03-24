@@ -57,6 +57,8 @@ p
 ![](README_files/figure-markdown_github/unnamed-chunk-2-1.png)
 
 ``` r
+ggplot2::ggsave(filename = "./images/economics.png")
+
 kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
 ```
 
@@ -209,6 +211,8 @@ unemploy
 </tr>
 </tbody>
 </table>
+![](./images/economics.png)
+
 Animated ggnanimate plot
 
 ``` r
@@ -219,10 +223,11 @@ p +
 ![](README_files/figure-markdown_github/unnamed-chunk-3-1.gif)
 
 ``` r
-# gganimate::anim_save(filename = "./images/along.gif")
+gganimate::anim_save(filename = "./images/along.gif")
 ```
 
-<!-- ![](./images/along.gif) -->
+![](./images/along.gif)
+
 transition\_states()
 ====================
 
