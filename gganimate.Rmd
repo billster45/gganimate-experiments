@@ -9,22 +9,23 @@ knitr::opts_chunk$set(echo = TRUE)
  
 # Introduction
 
-This set of examples comes from the excellent slides tweeted about here: https://twitter.com/mitchoharawild/status/1108913366100119553?s=12 
-The tweet links to these great slides: https://mitchelloharawild.com/wombat-gganimate/#1 that you can find the code for on GitHub here: https://github.com/numbats/gganimate-workshop
+This set of gganimate examples comes from the excellent slides tweeted here: https://twitter.com/mitchoharawild/status/1108913366100119553?s=12 
+
+The tweet links to these great slides: https://mitchelloharawild.com/wombat-gganimate/#1 
+
+Code for the slides is here: https://github.com/numbats/gganimate-workshop
 
 To help understand more intuitively how gganimate works, most of the examples from the slides are presented below as static ggplot charts along with a few rows of the raw data. Then as the animated version using gganimate.
  
-I've also made it clear which package each function comes from, either ggplot2 or gganimate.
+I've also made it clear which package each function comes from, either ggplot2 or gganimate by adding ggnaimte:: or ggplot2:: before each function.
 
-Finally, I often have trouble getting agganimate to work. Through trial and errror I've found that I need the following four packages: ggplot2, gganmimate, transformr, magick. Then to run the plot with this line of code..
-
-gganimate::animate(p, renderer = magick_renderer())
- 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(gganimate)
 library(transformr) # devtools::install_github("thomasp85/transformr")
 library(magick)
+library(gifski)
+library(png)
 library(datasauRus)
 library(gapminder)
 library(kableExtra)
@@ -40,7 +41,7 @@ kable_table <- function(table, title) {
 Adapting this example: https://mitchelloharawild.com/wombat-gganimate/#37
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(ggplot2::economics) +
   ggplot2::aes(date, unemploy) +
@@ -51,20 +52,19 @@ p
 kable_table(head(economics), "Top few rows of ggplot2::economics data in plot above")
 ```
 Animated ggnanimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p +
   gganimate::transition_reveal(date)
-
-gganimate::anim_save(filename = "./images/along.gif")
+# gganimate::anim_save(filename = "./images/along.gif")
 ```
-![](./images/along.gif)
+<!-- ![](./images/along.gif) -->
 
 # transition_states()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#42
 
 Static ggplot chart
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
@@ -78,7 +78,7 @@ kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::dat
 ```
 
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
@@ -87,8 +87,9 @@ p <-
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
   ggplot2::labs(title = "Dataset: {closest_state}") +
   ggplot2::theme_minimal()
+p
   
-gganimate::animate(p, renderer = magick_renderer())
+# gganimate::animate(p, renderer = magick_renderer())
 ```
 
 # transition_time() & shadow_wake()
@@ -96,7 +97,7 @@ gganimate::animate(p, renderer = magick_renderer())
 This example: https://mitchelloharawild.com/wombat-gganimate/#74
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(data = gapminder::gapminder) + 
   ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
@@ -105,7 +106,7 @@ p <-
   ggplot2::scale_color_viridis_d() +
   ggplot2::scale_size(range = c(2, 12)) +
   ggplot2::labs(x = "GDP per capita", y = "Life expectancy") +
-  ggplot2::facet_wrap(~year)
+  ggplot2::facet_wrap(~year) +
   ggplot2::theme_minimal()
 p
 
@@ -113,7 +114,7 @@ kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder da
 ```
 
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 
 p <- 
   ggplot2::ggplot(data = gapminder::gapminder) + 
@@ -128,8 +129,7 @@ p <-
   ggplot2::labs(title = "Year: {frame_time}") +
   gganimate::shadow_wake(wake_length = 0.1, alpha = FALSE) +
   ggplot2::theme_minimal()
-
-gganimate::animate(p, renderer = magick_renderer())
+p
 ```
 
 # transition_states() & shadow_wake()
@@ -137,7 +137,7 @@ gganimate::animate(p, renderer = magick_renderer())
 This example: https://mitchelloharawild.com/wombat-gganimate/#57
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(data = datasets::iris) +
   ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
@@ -149,7 +149,7 @@ p
 kable_table(head(datasets::iris), "Top few rows of datasets::iris data in plot above")
 ```
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(data = datasets::iris) +
   ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
@@ -159,19 +159,19 @@ p <-
   ggplot2::labs(title = "{closest_state}") +
   gganimate::shadow_wake(wake_length = 0.1) +
   ggplot2::theme_minimal()
-
-gganimate::animate(p, renderer = magick_renderer())
+p
 ```
+
 
 # transition_time() & shadow_mark()
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
   ggplot2::ggplot(data = datasets::airquality) +
-  ggplot2::aes(Day, Temp) +
+  ggplot2::aes(x = Day, y = Temp) +
   ggplot2::geom_line(color = 'steelblue', size = 1) +
   ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
@@ -181,15 +181,16 @@ kable_table(head(datasets::airquality), "Top few rows of datasets::airquality da
 ```
 
 Animated gganimate plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error = TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 p <- 
-  ggplot2::ggplot(data = datasets::airquality, aes(Day, Temp)) +
-  ggplot2::geom_line(color = 'red', size = 1) +
+  ggplot2::ggplot(data = datasets::airquality) +
+  ggplot2::aes(x = Day, y = Temp) +
+  ggplot2::geom_line(color = 'steelblue', size = 1) +
   # ggplot2::facet_wrap(~Month)
   gganimate::transition_time(time = Month) +
-  gganimate::shadow_mark(colour = 'black', size = 0.75) +
+  # ggplot2::labs(title = "{closest_time}") +
+  gganimate::shadow_mark(colour = 'grey', size = 0.75) +
   ggplot2::theme_minimal()
-
-gganimate::animate(p, renderer = magick_renderer())
+p
 ```
 
