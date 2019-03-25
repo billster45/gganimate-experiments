@@ -236,7 +236,7 @@ knitr::include_graphics("images/airquality.gif")
 
 # transition_layers()
 
-This example: https://mitchelloharawild.com/wombat-gganimate/#58
+This example: https://mitchelloharawild.com/wombat-gganimate/#46
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in 2 plots below")

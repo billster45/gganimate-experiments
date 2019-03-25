@@ -913,7 +913,7 @@ gganimate::anim_save(filename = "./images/airquality.gif")
 transition\_layers()
 ====================
 
-This example: <https://mitchelloharawild.com/wombat-gganimate/#58>
+This example: <https://mitchelloharawild.com/wombat-gganimate/#46>
 
 ``` r
 kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in 2 plots below")
