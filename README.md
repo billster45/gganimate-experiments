@@ -217,12 +217,6 @@ Animated ggnanimate plot
 
 ``` r
 p + gganimate::transition_reveal(date)
-print(p)
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
-
-``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
