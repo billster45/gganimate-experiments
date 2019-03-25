@@ -208,13 +208,21 @@ p <-
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/economics.png", plot = p)
+knitr::include_graphics("images/economics.png") 
 ```
 
-![](./images/economics.png) Animated ggnanimate plot
+<img src="images/economics.png" width="50%" />
+
+Animated ggnanimate plot
 
 ``` r
 p + gganimate::transition_reveal(date)
 print(p)
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 

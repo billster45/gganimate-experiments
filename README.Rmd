@@ -51,15 +51,16 @@ kable_table(head(economics), "Top few rows of ggplot2::economics data in plots b
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "50%"}
 p <- 
   ggplot2::ggplot(ggplot2::economics) +
   ggplot2::aes(date, unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/economics.png", plot = p)
+knitr::include_graphics("images/economics.png") 
 ```
-![](./images/economics.png)
+
 Animated ggnanimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p + gganimate::transition_reveal(date)
