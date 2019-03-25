@@ -12,17 +12,17 @@ Understanding gganimate intuitively
 Introduction
 ============
 
-This set of gganimate examples comes from the excellent slides tweeted here: <https://twitter.com/mitchoharawild/status/1108913366100119553?s=12>
+1.  This set of gganimate examples are adapted from the excellent slides tweeted here: <https://twitter.com/mitchoharawild/status/1108913366100119553?s=12>
 
-The tweet links to these great slides: <https://mitchelloharawild.com/wombat-gganimate/#1>
+2.  You can view the slides here: <https://mitchelloharawild.com/wombat-gganimate/#1>
 
-Code for the slides is here: <https://github.com/numbats/gganimate-workshop>
+3.  Code for the slides is here: <https://github.com/numbats/gganimate-workshop>
 
-To help understand more intuitively how gganimate works, most of the examples from the slides are presented below as static ggplot charts along with a few rows of the raw data. Then as the animated version using gganimate.
+4.  To help me understand intuitively how gganimate works with ggplot, I've re-created most of the examples from the slides below. First as a static ggplot plot, then as the gganimate version.
 
-I've also made it clear which package each function comes from, either ggplot2 or gganimate by adding ggnaimte:: or ggplot2:: before each function.
+5.  To make it clear which package each function comes from I have added ggnaimte:: or ggplot2:: before each function.
 
-This describes the functions of gganimate and what they do well: <https://gganimate.com/reference/index.html>
+6.  I've found the gganimate reference describes all its functions very clearly: <https://gganimate.com/reference/index.html>
 
 ``` r
 library(ggplot2)
