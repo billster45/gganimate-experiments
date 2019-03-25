@@ -132,7 +132,7 @@ p <-
 ggplot2::ggsave(filename = "./images/gapminder.png", plot = p)
 knitr::include_graphics("images/gapminder.png") 
 ```
-![](./images/gapminder.png)
+
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 

@@ -217,6 +217,7 @@ Animated ggnanimate plot
 
 ``` r
 p + gganimate::transition_reveal(date)
+print(p)
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
@@ -524,7 +525,9 @@ ggplot2::ggsave(filename = "./images/gapminder.png", plot = p)
 knitr::include_graphics("images/gapminder.png") 
 ```
 
-<img src="images/gapminder.png" width="60%" /> ![](./images/gapminder.png) Animated gganimate plot
+<img src="images/gapminder.png" width="60%" />
+
+Animated gganimate plot
 
 ``` r
 p <- 
