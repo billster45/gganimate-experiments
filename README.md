@@ -203,8 +203,8 @@ Static ggplot plot
 
 ``` r
 p <- 
-  ggplot2::ggplot(ggplot2::economics) +
-  ggplot2::aes(date, unemploy) +
+  ggplot2::ggplot(data = ggplot2::economics) +
+  ggplot2::aes(x = date, y = unemploy) +
   ggplot2::geom_line() +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/economics.png", plot = p)
@@ -216,8 +216,13 @@ knitr::include_graphics("images/economics.png")
 Animated ggnanimate plot
 
 ``` r
-p + gganimate::transition_reveal(date)
+p + gganimate::transition_reveal(along = date)
 print(p)
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
@@ -323,7 +328,7 @@ Static ggplot chart
 ``` r
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
-  ggplot2::aes(x, y) +
+  ggplot2::aes(x = x, y = y) +
   ggplot2::geom_point() +
   ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
@@ -338,7 +343,7 @@ Animated gganimate plot
 ``` r
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
-  ggplot2::aes(x, y) +
+  ggplot2::aes(x = x, y = y) +
   ggplot2::geom_point() +
   # ggplot2::facet_wrap(~dataset)
   gganimate::transition_states(states = dataset, transition_length = 3, state_length = 1) +
@@ -1198,7 +1203,7 @@ Static ggplot plot
 ``` r
 p <- 
   ggplot2::ggplot(data = datasets::mtcars) +
-  ggplot2::aes(mpg, disp) + 
+  ggplot2::aes(x = mpg, y = disp) + 
   ggplot2::geom_point() +
   ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
   ggplot2::geom_smooth(aes(colour = factor(gear))) +
@@ -1214,7 +1219,7 @@ Animated gganimate plot
 ``` r
 p <- 
   ggplot2::ggplot(data = datasets::mtcars) +
-  ggplot2::aes(mpg, disp) + 
+  ggplot2::aes(x = mpg, y = disp) + 
   ggplot2::geom_point() +
   ggplot2::geom_smooth(colour = 'grey', se = FALSE) +
   ggplot2::geom_smooth(aes(colour = factor(gear))) +
