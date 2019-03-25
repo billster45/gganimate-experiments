@@ -75,7 +75,7 @@ knitr::include_graphics("images/economics.gif")
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#42
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::datasaurus_dozen data in  2 plots below")
 ```
 
@@ -88,8 +88,9 @@ p <-
   ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/datasauRus.png", plot = p)
+knitr::include_graphics("images/datasauRus.png") 
 ```
-![](./images/datasauRus.png)
+
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
 p <- 
@@ -112,7 +113,7 @@ knitr::include_graphics("images/datasauRus.gif")
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#74
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder data in 2 plots below")
 ```
 
@@ -129,6 +130,7 @@ p <-
   ggplot2::facet_wrap(~year) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/gapminder.png", plot = p)
+knitr::include_graphics("images/gapminder.png") 
 ```
 ![](./images/gapminder.png)
 Animated gganimate plot
@@ -158,7 +160,7 @@ knitr::include_graphics("images/gapminder.gif")
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#57
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(datasets::iris), "Top few rows of datasets::iris data in 2 plots below")
 ```
 
@@ -171,8 +173,8 @@ p <-
   ggplot2::facet_wrap(~Species) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/iris.png", plot = p)
+knitr::include_graphics("images/iris.png") 
 ```
-![](./images/iris.png)
 
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
@@ -197,7 +199,7 @@ knitr::include_graphics("images/iris.gif")
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(datasets::airquality), "Top few rows of datasets::airquality data in 2 plots below")
 ```
 
@@ -210,8 +212,8 @@ p <-
   ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/airquality.png", plot = p)
+knitr::include_graphics("images/airquality.png") 
 ```
-![](./images/airquality.png)
 
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}
@@ -236,7 +238,7 @@ knitr::include_graphics("images/airquality.gif")
 
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
 ```
 
@@ -250,8 +252,8 @@ p <-
   ggplot2::geom_smooth(aes(colour = factor(gear))) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/mtcars.png", plot = p)
+knitr::include_graphics("images/mtcars.png") 
 ```
-![](./images/mtcars.png)
 
 Animated gganimate plot
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, results="hide"}

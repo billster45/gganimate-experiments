@@ -333,9 +333,12 @@ p <-
   ggplot2::facet_wrap(~dataset)  +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/datasauRus.png", plot = p)
+knitr::include_graphics("images/datasauRus.png") 
 ```
 
-![](./images/datasauRus.png) Animated gganimate plot
+<img src="images/datasauRus.png" width="60%" />
+
+Animated gganimate plot
 
 ``` r
 p <- 
@@ -524,9 +527,10 @@ p <-
   ggplot2::facet_wrap(~year) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/gapminder.png", plot = p)
+knitr::include_graphics("images/gapminder.png") 
 ```
 
-![](./images/gapminder.png) Animated gganimate plot
+<img src="images/gapminder.png" width="60%" /> ![](./images/gapminder.png) Animated gganimate plot
 
 ``` r
 p <- 
@@ -695,9 +699,10 @@ p <-
   ggplot2::facet_wrap(~Species) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/iris.png", plot = p)
+knitr::include_graphics("images/iris.png") 
 ```
 
-![](./images/iris.png)
+<img src="images/iris.png" width="60%" />
 
 Animated gganimate plot
 
@@ -885,9 +890,10 @@ p <-
   ggplot2::facet_wrap(~Month) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/airquality.png", plot = p)
+knitr::include_graphics("images/airquality.png") 
 ```
 
-![](./images/airquality.png)
+<img src="images/airquality.png" width="60%" />
 
 Animated gganimate plot
 
@@ -1201,9 +1207,10 @@ p <-
   ggplot2::geom_smooth(aes(colour = factor(gear))) +
   ggplot2::theme_minimal()
 ggplot2::ggsave(filename = "./images/mtcars.png", plot = p)
+knitr::include_graphics("images/mtcars.png") 
 ```
 
-![](./images/mtcars.png)
+<img src="images/mtcars.png" width="60%" />
 
 Animated gganimate plot
 
