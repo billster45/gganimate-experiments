@@ -4,7 +4,7 @@ Understanding gganimate intuitively
 -   [Introduction](#introduction)
 -   [transition\_reveal()](#transition_reveal)
 -   [transition\_states()](#transition_states)
--   [transition\_time() & shadow\_wake()](#transition_time-shadow_wake)
+-   [transition\_time() and shadow\_wake()](#transition_time-shadow_wake)
 -   [transition\_states() & shadow\_wake()](#transition_states-shadow_wake)
 -   [transition\_time() & shadow\_mark()](#transition_time-shadow_mark)
 -   [transition\_layers()](#transition_layers)
@@ -345,7 +345,7 @@ gganimate::anim_save(filename = "./images/datasauRus.gif")
 ![](./images/datasauRus.gif)
 
 
-transition\_time() & shadow\_wake()
+transition\_time() and shadow\_wake()
 ===================================
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#74>
