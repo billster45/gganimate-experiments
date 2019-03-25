@@ -916,12 +916,12 @@ transition\_layers()
 This example: <https://mitchelloharawild.com/wombat-gganimate/#58>
 
 ``` r
-kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
+kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in 2 plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
 <caption>
-Top few rows of datasets::mtcars data in plot above
+Top few rows of datasets::mtcars data in 2 plots below
 </caption>
 <thead>
 <tr>

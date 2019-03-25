@@ -239,7 +239,7 @@ knitr::include_graphics("images/airquality.gif")
 This example: https://mitchelloharawild.com/wombat-gganimate/#58
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
-kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in plot above")
+kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in 2 plots below")
 ```
 
 Static ggplot plot
