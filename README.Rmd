@@ -51,7 +51,7 @@ kable_table(head(economics), "Top few rows of ggplot2::economics data in plots b
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "50%"}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(ggplot2::economics) +
   ggplot2::aes(date, unemploy) +
@@ -67,7 +67,9 @@ p + gganimate::transition_reveal(date)
 print(p)
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
-![](./images/economics.gif)
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/economics.gif") 
+```
 
 # transition_states()
 
@@ -78,7 +80,7 @@ kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::dat
 ```
 
 Static ggplot chart
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(data = datasauRus::datasaurus_dozen) +
   ggplot2::aes(x, y) +
@@ -101,7 +103,10 @@ p <-
 print(p)
 gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
-![](./images/datasauRus.gif)
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/datasauRus.gif") 
+```
+
 
 # transition_time() and shadow_wake()
 
@@ -112,7 +117,7 @@ kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder da
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(data = gapminder::gapminder) + 
   ggplot2::aes(x = gdpPercap, y=lifeExp, size = pop, colour = country) +
@@ -144,7 +149,10 @@ p <-
 print(p)
 gganimate::anim_save(filename = "./images/gapminder.gif")
 ```
-![](./images/gapminder.gif)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/gapminder.gif") 
+```
 
 # transition_states() and shadow_wake()
 
@@ -155,7 +163,7 @@ kable_table(head(datasets::iris), "Top few rows of datasets::iris data in 2 plot
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(data = datasets::iris) +
   ggplot2::aes(x = Petal.Length, y = Sepal.Length) +
@@ -180,7 +188,10 @@ p <-
 print(p)
 gganimate::anim_save(filename = "./images/iris.gif")
 ```
-![](./images/iris.gif)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/iris.gif") 
+```
 
 # transition_time() and shadow_mark()
 
@@ -191,7 +202,7 @@ kable_table(head(datasets::airquality), "Top few rows of datasets::airquality da
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(data = datasets::airquality) +
   ggplot2::aes(x = Day, y = Temp) +
@@ -216,7 +227,10 @@ p <-
 print(p)
 gganimate::anim_save(filename = "./images/airquality.gif")
 ```
-![](./images/airquality.gif)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/airquality.gif") 
+```
 
 # transition_layers()
 
@@ -227,7 +241,7 @@ kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in pl
 ```
 
 Static ggplot plot
-```{r, echo=TRUE, warning=FALSE, message=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, out.width = "60%"}
 p <- 
   ggplot2::ggplot(data = datasets::mtcars) +
   ggplot2::aes(mpg, disp) + 
@@ -255,6 +269,9 @@ p <-
 print(p)
 gganimate::anim_save(filename = "./images/mtcars.gif")
 ```
-![](./images/mtcars.gif)
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width = "60%"}
+knitr::include_graphics("images/mtcars.gif") 
+```
 
 

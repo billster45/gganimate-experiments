@@ -211,7 +211,7 @@ ggplot2::ggsave(filename = "./images/economics.png", plot = p)
 knitr::include_graphics("images/economics.png") 
 ```
 
-<img src="images/economics.png" width="50%" />
+<img src="images/economics.png" width="60%" />
 
 Animated ggnanimate plot
 
@@ -226,7 +226,7 @@ print(p)
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
-![](./images/economics.gif)
+<img src="images/economics.gif" width="60%" />
 
 transition\_states()
 ====================
@@ -350,7 +350,7 @@ print(p)
 gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
 
-![](./images/datasauRus.gif)
+<img src="images/datasauRus.gif" width="60%" />
 
 transition\_time() and shadow\_wake()
 =====================================
@@ -546,7 +546,7 @@ print(p)
 gganimate::anim_save(filename = "./images/gapminder.gif")
 ```
 
-![](./images/gapminder.gif)
+<img src="images/gapminder.gif" width="60%" />
 
 transition\_states() and shadow\_wake()
 =======================================
@@ -715,7 +715,7 @@ print(p)
 gganimate::anim_save(filename = "./images/iris.gif")
 ```
 
-![](./images/iris.gif)
+<img src="images/iris.gif" width="60%" />
 
 transition\_time() and shadow\_mark()
 =====================================
@@ -905,7 +905,7 @@ print(p)
 gganimate::anim_save(filename = "./images/airquality.gif")
 ```
 
-![](./images/airquality.gif)
+<img src="images/airquality.gif" width="60%" />
 
 transition\_layers()
 ====================
@@ -1223,4 +1223,4 @@ print(p)
 gganimate::anim_save(filename = "./images/mtcars.gif")
 ```
 
-![](./images/mtcars.gif)
+<img src="images/mtcars.gif" width="60%" />
