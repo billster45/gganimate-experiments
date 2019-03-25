@@ -215,11 +215,6 @@ ggplot2::ggsave(filename = "./images/economics.png", plot = p)
 ``` r
 p + gganimate::transition_reveal(date)
 print(p)
-```
-
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
-
-``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
@@ -348,6 +343,7 @@ gganimate::anim_save(filename = "./images/datasauRus.gif")
 ```
 
 ![](./images/datasauRus.gif)
+
 
 transition\_time() & shadow\_wake()
 ===================================
@@ -545,6 +541,7 @@ gganimate::anim_save(filename = "./images/gapminder.gif")
 
 ![](./images/gapminder.gif)
 
+
 transition\_states() & shadow\_wake()
 =====================================
 
@@ -713,6 +710,7 @@ gganimate::anim_save(filename = "./images/iris.gif")
 ```
 
 ![](./images/iris.gif)
+
 
 transition\_time() & shadow\_mark()
 ===================================
@@ -903,6 +901,7 @@ gganimate::anim_save(filename = "./images/airquality.gif")
 ```
 
 ![](./images/airquality.gif)
+
 
 transition\_layers()
 ====================
