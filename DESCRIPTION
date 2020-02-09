@@ -1,0 +1,27 @@
+Type: Compendium
+Package: gganimate experiments
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.1
+Authors@R: 
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: experiments with gganimate
+License: What license it uses
+Depends: 
+    datasauRus,
+    datasets,
+    gapminder,
+    gganimate,
+    ggplot2,
+    gifski,
+    kableExtra,
+    knitr,
+    magick,
+    png,
+    rmarkdown,
+    transformr
+Encoding: UTF-8
+LazyData: true
