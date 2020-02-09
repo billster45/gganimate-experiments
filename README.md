@@ -1,28 +1,46 @@
 Understanding gganimate intuitively
 ================
 
--   [Introduction](#introduction)
--   [transition\_reveal()](#transition_reveal)
--   [transition\_states()](#transition_states)
--   [transition\_time() and shadow\_wake()](#transition_time-and-shadow_wake)
--   [transition\_states() and shadow\_wake()](#transition_states-and-shadow_wake)
--   [transition\_time() and shadow\_mark()](#transition_time-and-shadow_mark)
--   [transition\_layers()](#transition_layers)
+  - [Introduction](#introduction)
+  - [transition\_reveal()](#transition_reveal)
+  - [transition\_states()](#transition_states)
+  - [transition\_time() and
+    shadow\_wake()](#transition_time-and-shadow_wake)
+  - [transition\_states() and
+    shadow\_wake()](#transition_states-and-shadow_wake)
+  - [transition\_time() and
+    shadow\_mark()](#transition_time-and-shadow_mark)
+  - [transition\_layers()](#transition_layers)
 
-Introduction
-============
+<!-- badges: start -->
 
-1.  This set of gganimate examples are adapted from the excellent slides tweeted here: <https://twitter.com/mitchoharawild/status/1108913366100119553?s=12>
+[![Launch Rstudio
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/billster45/gganimate-experiments/master?urlpath=rstudio)
+<!-- badges: end -->
 
-2.  You can view the slides here: <https://mitchelloharawild.com/wombat-gganimate/#1>
+# Introduction
 
-3.  Code for the slides is here: <https://github.com/numbats/gganimate-workshop>
+1.  This set of gganimate examples are adapted from the excellent slides
+    tweeted here:
+    <https://twitter.com/mitchoharawild/status/1108913366100119553?s=12>
 
-4.  To help me understand intuitively how gganimate works with ggplot, I've re-created most of the examples from the slides below. First as a static ggplot plot, then as the gganimate version.
+2.  You can view the slides here:
+    <https://mitchelloharawild.com/wombat-gganimate/#1>
 
-5.  To make it clear which package each function comes from I have added ggnaimte:: or ggplot2:: before each function.
+3.  Code for the slides is here:
+    <https://github.com/numbats/gganimate-workshop>
 
-6.  I've found the gganimate reference describes all its functions very clearly: <https://gganimate.com/reference/index.html>
+4.  To help me understand intuitively how gganimate works with ggplot,
+    I’ve re-created most of the examples from the slides below. First
+    as a static ggplot plot, then as the gganimate version.
+
+5.  To make it clear which package each function comes from I have added
+    ggnaimte:: or ggplot2:: before each function.
+
+6.  I’ve found the gganimate reference describes all its functions very
+    clearly: <https://gganimate.com/reference/index.html>
+
+<!-- end list -->
 
 ``` r
 library(ggplot2)
@@ -41,164 +59,313 @@ kable_table <- function(table, title) {
 }
 ```
 
-transition\_reveal()
-====================
+# transition\_reveal()
 
-Adapting this example: <https://mitchelloharawild.com/wombat-gganimate/#37>
+Adapting this example:
+<https://mitchelloharawild.com/wombat-gganimate/#37>
 
 ``` r
 kable_table(head(economics), "Top few rows of ggplot2::economics data in plots below")
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of ggplot2::economics data in plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;">
+
 date
+
 </th>
+
 <th style="text-align:right;">
+
 pce
+
 </th>
+
 <th style="text-align:right;">
+
 pop
+
 </th>
+
 <th style="text-align:right;">
+
 psavert
+
 </th>
+
 <th style="text-align:right;">
+
 uempmed
+
 </th>
+
 <th style="text-align:right;">
+
 unemploy
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-07-01
+
 </td>
+
 <td style="text-align:right;">
-507.4
+
+506.7
+
 </td>
+
 <td style="text-align:right;">
+
 198712
+
 </td>
+
 <td style="text-align:right;">
-12.5
+
+12.6
+
 </td>
+
 <td style="text-align:right;">
+
 4.5
+
 </td>
+
 <td style="text-align:right;">
+
 2944
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-08-01
+
 </td>
+
 <td style="text-align:right;">
-510.5
+
+509.8
+
 </td>
+
 <td style="text-align:right;">
+
 198911
+
 </td>
+
 <td style="text-align:right;">
-12.5
+
+12.6
+
 </td>
+
 <td style="text-align:right;">
+
 4.7
+
 </td>
+
 <td style="text-align:right;">
+
 2945
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-09-01
+
 </td>
+
 <td style="text-align:right;">
-516.3
+
+515.6
+
 </td>
+
 <td style="text-align:right;">
+
 199113
+
 </td>
+
 <td style="text-align:right;">
-11.7
+
+11.9
+
 </td>
+
 <td style="text-align:right;">
+
 4.6
+
 </td>
+
 <td style="text-align:right;">
+
 2958
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-10-01
+
 </td>
+
 <td style="text-align:right;">
-512.9
+
+512.2
+
 </td>
+
 <td style="text-align:right;">
+
 199311
+
 </td>
+
 <td style="text-align:right;">
-12.5
+
+12.9
+
 </td>
+
 <td style="text-align:right;">
+
 4.9
+
 </td>
+
 <td style="text-align:right;">
+
 3143
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-11-01
+
 </td>
+
 <td style="text-align:right;">
-518.1
+
+517.4
+
 </td>
+
 <td style="text-align:right;">
+
 199498
+
 </td>
+
 <td style="text-align:right;">
-12.5
+
+12.8
+
 </td>
+
 <td style="text-align:right;">
+
 4.7
+
 </td>
+
 <td style="text-align:right;">
+
 3066
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 1967-12-01
+
 </td>
+
 <td style="text-align:right;">
-525.8
+
+525.1
+
 </td>
+
 <td style="text-align:right;">
+
 199657
+
 </td>
+
 <td style="text-align:right;">
-12.1
+
+11.8
+
 </td>
+
 <td style="text-align:right;">
+
 4.8
+
 </td>
+
 <td style="text-align:right;">
+
 3018
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot plot
 
 ``` r
@@ -218,13 +385,17 @@ Animated ggnanimate plot
 ``` r
 p + gganimate::transition_reveal(along = date)
 print(p)
+```
+
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+
+``` r
 gganimate::anim_save(filename = "./images/economics.gif")
 ```
 
 <img src="images/economics.gif" width="60%" />
 
-transition\_states()
-====================
+# transition\_states()
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#42>
 
@@ -233,91 +404,177 @@ kable_table(head(datasauRus::datasaurus_dozen), "Top few rows of datasauRus::dat
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of datasauRus::datasaurus\_dozen data in 2 plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;">
+
 dataset
+
 </th>
+
 <th style="text-align:right;">
+
 x
+
 </th>
+
 <th style="text-align:right;">
+
 y
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 55.3846
+
 </td>
+
 <td style="text-align:right;">
+
 97.1795
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 51.5385
+
 </td>
+
 <td style="text-align:right;">
+
 96.0256
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 46.1538
+
 </td>
+
 <td style="text-align:right;">
+
 94.4872
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 42.8205
+
 </td>
+
 <td style="text-align:right;">
+
 91.4103
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 40.7692
+
 </td>
+
 <td style="text-align:right;">
+
 88.3333
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 dino
+
 </td>
+
 <td style="text-align:right;">
+
 38.7179
+
 </td>
+
 <td style="text-align:right;">
+
 84.8718
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot chart
 
 ``` r
@@ -350,8 +607,7 @@ gganimate::anim_save(filename = "./images/datasauRus.gif")
 
 <img src="images/datasauRus.gif" width="60%" />
 
-transition\_time() and shadow\_wake()
-=====================================
+# transition\_time() and shadow\_wake()
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#74>
 
@@ -360,154 +616,303 @@ kable_table(head(gapminder::gapminder), "Top few rows of gapminder::gapminder da
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of gapminder::gapminder data in 2 plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;">
+
 country
+
 </th>
+
 <th style="text-align:left;">
+
 continent
+
 </th>
+
 <th style="text-align:right;">
+
 year
+
 </th>
+
 <th style="text-align:right;">
+
 lifeExp
+
 </th>
+
 <th style="text-align:right;">
+
 pop
+
 </th>
+
 <th style="text-align:right;">
+
 gdpPercap
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1952
+
 </td>
+
 <td style="text-align:right;">
+
 28.801
+
 </td>
+
 <td style="text-align:right;">
+
 8425333
+
 </td>
+
 <td style="text-align:right;">
+
 779.4453
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1957
+
 </td>
+
 <td style="text-align:right;">
+
 30.332
+
 </td>
+
 <td style="text-align:right;">
+
 9240934
+
 </td>
+
 <td style="text-align:right;">
+
 820.8530
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1962
+
 </td>
+
 <td style="text-align:right;">
+
 31.997
+
 </td>
+
 <td style="text-align:right;">
+
 10267083
+
 </td>
+
 <td style="text-align:right;">
+
 853.1007
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1967
+
 </td>
+
 <td style="text-align:right;">
+
 34.020
+
 </td>
+
 <td style="text-align:right;">
+
 11537966
+
 </td>
+
 <td style="text-align:right;">
+
 836.1971
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1972
+
 </td>
+
 <td style="text-align:right;">
+
 36.088
+
 </td>
+
 <td style="text-align:right;">
+
 13079460
+
 </td>
+
 <td style="text-align:right;">
+
 739.9811
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Afghanistan
+
 </td>
+
 <td style="text-align:left;">
+
 Asia
+
 </td>
+
 <td style="text-align:right;">
+
 1977
+
 </td>
+
 <td style="text-align:right;">
+
 38.438
+
 </td>
+
 <td style="text-align:right;">
+
 14880372
+
 </td>
+
 <td style="text-align:right;">
+
 786.1134
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot plot
 
 ``` r
@@ -549,8 +954,7 @@ gganimate::anim_save(filename = "./images/gapminder.gif")
 
 <img src="images/gapminder.gif" width="60%" />
 
-transition\_states() and shadow\_wake()
-=======================================
+# transition\_states() and shadow\_wake()
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#57>
 
@@ -559,133 +963,261 @@ kable_table(head(datasets::iris), "Top few rows of datasets::iris data in 2 plot
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of datasets::iris data in 2 plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:right;">
+
 Sepal.Length
+
 </th>
+
 <th style="text-align:right;">
+
 Sepal.Width
+
 </th>
+
 <th style="text-align:right;">
+
 Petal.Length
+
 </th>
+
 <th style="text-align:right;">
+
 Petal.Width
+
 </th>
+
 <th style="text-align:left;">
+
 Species
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:right;">
+
 5.1
+
 </td>
+
 <td style="text-align:right;">
+
 3.5
+
 </td>
+
 <td style="text-align:right;">
+
 1.4
+
 </td>
+
 <td style="text-align:right;">
+
 0.2
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 4.9
+
 </td>
+
 <td style="text-align:right;">
+
 3.0
+
 </td>
+
 <td style="text-align:right;">
+
 1.4
+
 </td>
+
 <td style="text-align:right;">
+
 0.2
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 4.7
+
 </td>
+
 <td style="text-align:right;">
+
 3.2
+
 </td>
+
 <td style="text-align:right;">
+
 1.3
+
 </td>
+
 <td style="text-align:right;">
+
 0.2
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 4.6
+
 </td>
+
 <td style="text-align:right;">
+
 3.1
+
 </td>
+
 <td style="text-align:right;">
+
 1.5
+
 </td>
+
 <td style="text-align:right;">
+
 0.2
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 5.0
+
 </td>
+
 <td style="text-align:right;">
+
 3.6
+
 </td>
+
 <td style="text-align:right;">
+
 1.4
+
 </td>
+
 <td style="text-align:right;">
+
 0.2
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 5.4
+
 </td>
+
 <td style="text-align:right;">
+
 3.9
+
 </td>
+
 <td style="text-align:right;">
+
 1.7
+
 </td>
+
 <td style="text-align:right;">
+
 0.4
+
 </td>
+
 <td style="text-align:left;">
+
 setosa
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot plot
 
 ``` r
@@ -719,8 +1251,7 @@ gganimate::anim_save(filename = "./images/iris.gif")
 
 <img src="images/iris.gif" width="60%" />
 
-transition\_time() and shadow\_mark()
-=====================================
+# transition\_time() and shadow\_mark()
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#58>
 
@@ -729,154 +1260,303 @@ kable_table(head(datasets::airquality), "Top few rows of datasets::airquality da
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of datasets::airquality data in 2 plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:right;">
+
 Ozone
+
 </th>
+
 <th style="text-align:right;">
+
 Solar.R
+
 </th>
+
 <th style="text-align:right;">
+
 Wind
+
 </th>
+
 <th style="text-align:right;">
+
 Temp
+
 </th>
+
 <th style="text-align:right;">
+
 Month
+
 </th>
+
 <th style="text-align:right;">
+
 Day
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:right;">
+
 41
+
 </td>
+
 <td style="text-align:right;">
+
 190
+
 </td>
+
 <td style="text-align:right;">
+
 7.4
+
 </td>
+
 <td style="text-align:right;">
+
 67
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 36
+
 </td>
+
 <td style="text-align:right;">
+
 118
+
 </td>
+
 <td style="text-align:right;">
+
 8.0
+
 </td>
+
 <td style="text-align:right;">
+
 72
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 2
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 12
+
 </td>
+
 <td style="text-align:right;">
+
 149
+
 </td>
+
 <td style="text-align:right;">
+
 12.6
+
 </td>
+
 <td style="text-align:right;">
+
 74
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 3
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 18
+
 </td>
+
 <td style="text-align:right;">
+
 313
+
 </td>
+
 <td style="text-align:right;">
+
 11.5
+
 </td>
+
 <td style="text-align:right;">
+
 62
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 NA
+
 </td>
+
 <td style="text-align:right;">
+
 NA
+
 </td>
+
 <td style="text-align:right;">
+
 14.3
+
 </td>
+
 <td style="text-align:right;">
+
 56
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:right;">
+
 28
+
 </td>
+
 <td style="text-align:right;">
+
 NA
+
 </td>
+
 <td style="text-align:right;">
+
 14.9
+
 </td>
+
 <td style="text-align:right;">
+
 66
+
 </td>
+
 <td style="text-align:right;">
+
 5
+
 </td>
+
 <td style="text-align:right;">
+
 6
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot plot
 
 ``` r
@@ -910,8 +1590,7 @@ gganimate::anim_save(filename = "./images/airquality.gif")
 
 <img src="images/airquality.gif" width="60%" />
 
-transition\_layers()
-====================
+# transition\_layers()
 
 This example: <https://mitchelloharawild.com/wombat-gganimate/#46>
 
@@ -920,279 +1599,553 @@ kable_table(head(datasets::mtcars), "Top few rows of datasets::mtcars data in 2 
 ```
 
 <table class="table table-striped table-condensed" style="width: auto !important; ">
+
 <caption>
+
 Top few rows of datasets::mtcars data in 2 plots below
+
 </caption>
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;">
+
 </th>
+
 <th style="text-align:right;">
+
 mpg
+
 </th>
+
 <th style="text-align:right;">
+
 cyl
+
 </th>
+
 <th style="text-align:right;">
+
 disp
+
 </th>
+
 <th style="text-align:right;">
+
 hp
+
 </th>
+
 <th style="text-align:right;">
+
 drat
+
 </th>
+
 <th style="text-align:right;">
+
 wt
+
 </th>
+
 <th style="text-align:right;">
+
 qsec
+
 </th>
+
 <th style="text-align:right;">
+
 vs
+
 </th>
+
 <th style="text-align:right;">
+
 am
+
 </th>
+
 <th style="text-align:right;">
+
 gear
+
 </th>
+
 <th style="text-align:right;">
+
 carb
+
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 Mazda RX4
+
 </td>
+
 <td style="text-align:right;">
+
 21.0
+
 </td>
+
 <td style="text-align:right;">
+
 6
+
 </td>
+
 <td style="text-align:right;">
+
 160
+
 </td>
+
 <td style="text-align:right;">
+
 110
+
 </td>
+
 <td style="text-align:right;">
+
 3.90
+
 </td>
+
 <td style="text-align:right;">
+
 2.620
+
 </td>
+
 <td style="text-align:right;">
+
 16.46
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Mazda RX4 Wag
+
 </td>
+
 <td style="text-align:right;">
+
 21.0
+
 </td>
+
 <td style="text-align:right;">
+
 6
+
 </td>
+
 <td style="text-align:right;">
+
 160
+
 </td>
+
 <td style="text-align:right;">
+
 110
+
 </td>
+
 <td style="text-align:right;">
+
 3.90
+
 </td>
+
 <td style="text-align:right;">
+
 2.875
+
 </td>
+
 <td style="text-align:right;">
+
 17.02
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Datsun 710
+
 </td>
+
 <td style="text-align:right;">
+
 22.8
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 <td style="text-align:right;">
+
 108
+
 </td>
+
 <td style="text-align:right;">
+
 93
+
 </td>
+
 <td style="text-align:right;">
+
 3.85
+
 </td>
+
 <td style="text-align:right;">
+
 2.320
+
 </td>
+
 <td style="text-align:right;">
+
 18.61
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 4
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Hornet 4 Drive
+
 </td>
+
 <td style="text-align:right;">
+
 21.4
+
 </td>
+
 <td style="text-align:right;">
+
 6
+
 </td>
+
 <td style="text-align:right;">
+
 258
+
 </td>
+
 <td style="text-align:right;">
+
 110
+
 </td>
+
 <td style="text-align:right;">
+
 3.08
+
 </td>
+
 <td style="text-align:right;">
+
 3.215
+
 </td>
+
 <td style="text-align:right;">
+
 19.44
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 3
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Hornet Sportabout
+
 </td>
+
 <td style="text-align:right;">
+
 18.7
+
 </td>
+
 <td style="text-align:right;">
+
 8
+
 </td>
+
 <td style="text-align:right;">
+
 360
+
 </td>
+
 <td style="text-align:right;">
+
 175
+
 </td>
+
 <td style="text-align:right;">
+
 3.15
+
 </td>
+
 <td style="text-align:right;">
+
 3.440
+
 </td>
+
 <td style="text-align:right;">
+
 17.02
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 3
+
 </td>
+
 <td style="text-align:right;">
+
 2
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 Valiant
+
 </td>
+
 <td style="text-align:right;">
+
 18.1
+
 </td>
+
 <td style="text-align:right;">
+
 6
+
 </td>
+
 <td style="text-align:right;">
+
 225
+
 </td>
+
 <td style="text-align:right;">
+
 105
+
 </td>
+
 <td style="text-align:right;">
+
 2.76
+
 </td>
+
 <td style="text-align:right;">
+
 3.460
+
 </td>
+
 <td style="text-align:right;">
+
 20.22
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 <td style="text-align:right;">
+
 0
+
 </td>
+
 <td style="text-align:right;">
+
 3
+
 </td>
+
 <td style="text-align:right;">
+
 1
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
+
 Static ggplot plot
 
 ``` r

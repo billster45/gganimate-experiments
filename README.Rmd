@@ -7,6 +7,11 @@ output:
 always_allow_html: yes
 ---
 
+<!-- badges: start -->
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/billster45/gganimate-experiments/master?urlpath=rstudio)
+<!-- badges: end -->
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
